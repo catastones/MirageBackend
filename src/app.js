@@ -4,8 +4,10 @@ const cors = require('cors');
 import pkj from '../package.json';
 import './database'
 import {createRoles, createCategoria} from './libs/initialSetup'
+//import archivo rutas
 
-
+import userRoutes from './routes/user.routes'
+//
 const app = express();
 app.use(cors({
     origin:"*"
@@ -23,6 +25,6 @@ app.get('/', (req,res)=>{
 
     });
 })
-
+ app.use('/user',userRoutes);
 
 export default app;
