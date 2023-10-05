@@ -3,7 +3,7 @@
 @baseUrl_Remote = https://miragebackend-saag-dev.fl0.io
 
 ###
-GET {{baseUrl_local}}/categorias HTTP/1.1
+GET {{baseUrl_Remote}}/categorias HTTP/1.1
 
 ###
 POST {{baseUrl_Remote}}/categorias HTTP/1.1
