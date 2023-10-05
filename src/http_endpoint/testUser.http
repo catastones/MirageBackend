@@ -1,0 +1,28 @@
+@baseUrl_local = http://localhost:3055
+@baseUrl_Remote = https://miragebackend-saag-dev.fl0.io
+@authToken = {{login.response.body.token}}
+
+
+///Usuarios
+POST  {{baseUrl_Remote}}/user/newuser
+Content-Type: application/json
+
+{
+    "nombre":"Misteri",
+    "apellido":"Cliente",
+	"username":"clienttest",   
+    "password":"123456", 
+    "email":"client@email.com",
+   
+    "roles": "client"
+}
+###
+###
+# @name login
+POST {{baseUrl_Remote}}/user/login HTTP/1.1
+Content-Type: application/json
+
+{ 
+	"username":"clienttest",
+    "password":"123456"    
+}
