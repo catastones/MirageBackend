@@ -1,0 +1,117 @@
+
+@baseUrl_local = http://localhost:3055
+@baseUrl_Remote = https://miragebackend-saag-dev.fl0.io
+###
+GET {{baseUrl_local}}/productos HTTP/1.1
+###
+GET {{baseUrl_Remote}}/productos/byid/651c651af1774eef38dbb162 HTTP/1.1
+###
+###
+GET {{baseUrl_local}}/productos/categoria/TV HTTP/1.1
+###
+POST {{baseUrl_Remote}}/productos HTTP/1.1
+Content-Type: application/json
+
+{ 
+	"categoria":"SmartPhone", 
+    "modelo":"Redmi 10C",
+    "marca":"Xiaomi",
+    "descripcion":{
+        "pantalla":"6.71'",
+        "Resolucion":"720 px x 1650 px",        
+        "SO":"Android 11",
+        "Resolucion_camara_trasera":"50 Mpx",
+        "Resolucion_camara_frontal":"5 Mpx",
+        "RAM":  "4 GB",
+        "ROM":  "128 GB",
+        "Dual_SIM":"SI",
+        "color": "Azul océano"   
+    },
+    "stock":10,     
+    "precio":110.999,
+    "url_image":"https://http2.mlstatic.com/D_NQ_NP_968191-MLA49949403456_052022-O.webp"
+}
+###
+DELETE {{baseUrl_Remote}}/productos/651c6836f1774eef38dbb16a HTTP/1.1
+###
+PUT {{baseUrl_Remote}}/productos HTTP/1.1
+Content-Type: application/json
+
+{ 
+    "_id": "651c651af1774eef38dbb162",
+	"categoria":"TV", 
+    "modelo":"LG UHD LED AI ThinQ 4K 65'",
+    "marca":"LG",
+    "descripcion":{
+        "pantalla":"PANEL 4K 65'",
+        "Resolucion":"3840 x 2.160",
+        "Procesador":"4K Procesador Inteligente α5",
+        "SO":"webOS 6.0",
+        "USB":2,
+        "HDMI":3        
+    },
+    "stock":3,     
+    "precio":699.999,
+    "url_image":"https://www.lg.com/ar/images/televisores/md07540656/gallery/Z-01.jpg"
+}
+###
+# { 
+# 	"categoria":"SmartPhone", 
+#     "modelo":"Moto G32",
+#     "marca":"Motorola",
+#     "descripcion":{
+#         "pantalla":"6.5'",
+#         "Resolucion":"2400 px x 1080 px",        
+#         "SO":"Android 12",
+#         "Resolucion_camara_trasera":"50 Mpx",
+#         "Resolucion_camara_frontal":"16 Mpx",
+#         "RAM":  "6 GB",
+#         "ROM":  "128 GB",
+#         "SIM_MAX":"1TB"    
+#     },
+#     "stock":10,     
+#     "precio":139.999,
+#     "url_image":"https://http2.mlstatic.com/D_NQ_NP_825955-MLU71687252597_092023-V.webp"
+# }
+# { 
+# 	"categoria":"TV", 
+#     "modelo":"55 Neo QLED 4K QN85C",
+#     "marca":"Samsung ",
+#     "descripcion":"Procesador Neural Quantum 4K - Neo Slim",
+#     "stock":5,  
+    
+#     "precio":11,
+#     "url_image":""
+# }
+# { 
+# 	"categoria":"TV", 
+#     "modelo":"KD-55X80J AR4",
+#     "marca":"Sony",
+#     "descripcion":{
+#         "pantalla":"55 pulgadas",
+#         "Resolucion":"3840 x 2.160",
+#         "Procesador":"4K HDR Processor X1™",
+#         "SO":"Android TV™",
+#         "USB":2,
+#         "HDMI":4        
+#     },
+#     "stock":5,     
+#     "precio":949.999,
+#     "url_image":"https://arsonyb2c.vtexassets.com/arquivos/ids/357168/d4f672c8c1b08401c3fb67cce747b7db.jpg?v=1777105420"
+# }
+# { 
+# 	"categoria":"TV", 
+#     "modelo":"LG UHD LED AI ThinQ 4K 65'",
+#     "marca":"LG",
+#     "descripcion":{
+#         "pantalla":"PANEL 4K 65'",
+#         "Resolucion":"3840 x 2.160",
+#         "Procesador":"4K Procesador Inteligente α5",
+#         "SO":"webOS 6.0",
+#         "USB":2,
+#         "HDMI":3        
+#     },
+#     "stock":4,     
+#     "precio":949.999,
+#     "url_image":"https://arsonyb2c.vtexassets.com/arquivos/ids/357168/d4f672c8c1b08401c3fb67cce747b7db.jpg?v=1777105420"
+# }
