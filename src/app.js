@@ -7,6 +7,7 @@ import {createRoles, createCategoria} from './libs/initialSetup'
 //import archivo rutas
 
 import userRoutes from './routes/user.routes'
+import categoriaRoutes from './routes/categorias.router'
 //
 const app = express();
 app.use(cors({
@@ -26,5 +27,6 @@ app.get('/', (req,res)=>{
     });
 })
  app.use('/user',userRoutes);
+ app.use('/categorias',categoriaRoutes)
 
 export default app;
