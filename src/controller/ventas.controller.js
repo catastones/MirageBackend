@@ -18,7 +18,10 @@ export const newVenta = async (req, res )=>{
 
 }
 export const listVenta = async (req, res )=>{
-    
+    await Venta.find()
+                .populate({path: 'User', select:['username','nombre','apellido','email']})
+                .then((data)=> res.json(data))
+                .catch((error)=> res.json({message : error})) 
 }
 export const getVentaById = async (req, res )=>{}
 export const getVentaByBuyer = async (req, res )=>{}
