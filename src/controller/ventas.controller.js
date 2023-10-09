@@ -30,7 +30,13 @@ export const getVentaById = async (req, res )=>{
                 .then((data)=> res.json(data))
                 .catch((error)=> res.json({message : error})) 
 }
-export const getVentaByBuyer = async (req, res )=>{}
+export const getVentaByBuyer = async (req, res )=>{
+    const {buyerId} = req.params; 
+     await Venta.find(`cliente:${buyerId}`)
+                .populate({path: 'User', select:['username','nombre','apellido','email']})
+                .then((data)=> res.json(data))
+                .catch((error)=> res.json({message : error})) 
+}
 export const getVentaByEntreFechas = async (req, res )=>{}
 export const deleteVenta = async (req, res )=>{}
 export const updateVenta = async (req, res )=>{}
