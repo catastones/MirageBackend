@@ -37,6 +37,21 @@ export const getVentaByBuyer = async (req, res )=>{
                 .then((data)=> res.json(data))
                 .catch((error)=> res.json({message : error})) 
 }
-export const getVentaByEntreFechas = async (req, res )=>{}
-export const deleteVenta = async (req, res )=>{}
+export const getVentaByEntreFechas = async (req, res )=>{
+    const {from,to} = req.params;
+    const _busqueda = {
+        timestamps : {
+            '$gte': `${from}T00:00:00.000Z`,
+            '$lt': `${to}T23:59:59.999Z`
+                } 
+
+        }
+    await Venta.find(_busqueda)
+                .populate({path: 'User', select:['username','nombre','apellido','email']})
+                .then((data)=> res.json(data))
+                .catch((error)=> res.json({message : error})) 
+}
+export const deleteVenta = async (req, res )=>{
+    
+}
 export const updateVenta = async (req, res )=>{}
