@@ -2,12 +2,12 @@
 @baseUrl_local = http://localhost:3055
 @baseUrl_Remote = https://miragebackend-saag-dev.fl0.io
 ###
-GET {{baseUrl_local}}/productos HTTP/1.1
+GET {{baseUrl_Remote}}/productos HTTP/1.1
 ###
 GET {{baseUrl_Remote}}/productos/byid/651c651af1774eef38dbb162 HTTP/1.1
 ###
 ###
-GET {{baseUrl_local}}/productos/categoria/TV HTTP/1.1
+GET {{baseUrl_Remote}}/productos/categoria/TV HTTP/1.1
 ###
 POST {{baseUrl_Remote}}/productos HTTP/1.1
 Content-Type: application/json
