@@ -29,9 +29,9 @@ app.get('/', (req,res)=>{
 
     });
 })
- app.use('/user',userRoutes);
- app.use('/categorias',categoriaRoutes)
-  app.use('/productos',productosRoutes);
-  app.use('/ventas',ventasRoutes);
+app.use('/user',userRoutes);
+app.use('/categorias',categoriaRoutes)
+app.use('/productos',productosRoutes);
+app.use('/ventas',ventasRoutes);
 
 export default app;
