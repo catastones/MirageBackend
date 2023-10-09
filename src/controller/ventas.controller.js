@@ -57,4 +57,19 @@ export const deleteVenta = async (req, res )=>{
                 .then(()=> res.status(201).json({message : `Venta ${ventaId} eliminada`}))
                 .catch((error)=> res.json({message : error})) ; 
 }
-export const updateVenta = async (req, res )=>{}
+export const updateVenta = async (req, res )=>{
+    const {cliente,items, monto_total, pyment,_id} = req.body;
+    const clienteDB = await  User.findOne(`username : ${cliente}`);
+
+    await Venta.findByIdAndUpdate(_id, 
+                                {$set:  
+                                  {cliente:clienteDB,
+                                  items:items,
+                                  monto_total:monto_total,
+                                  pyment:pyment
+                                                              
+                                } },{new:true})
+                .then(()=> res.status(201).json({message : `Venta ${_id} actualizada`}))
+                .catch((error)=> res.json({message : error})) ; 
+
+}
