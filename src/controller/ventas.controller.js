@@ -23,7 +23,13 @@ export const listVenta = async (req, res )=>{
                 .then((data)=> res.json(data))
                 .catch((error)=> res.json({message : error})) 
 }
-export const getVentaById = async (req, res )=>{}
+export const getVentaById = async (req, res )=>{
+    const {ventaId} = req.params; 
+    await Venta.findById(ventaId)
+                .populate({path: 'User', select:['username','nombre','apellido','email']})
+                .then((data)=> res.json(data))
+                .catch((error)=> res.json({message : error})) 
+}
 export const getVentaByBuyer = async (req, res )=>{}
 export const getVentaByEntreFechas = async (req, res )=>{}
 export const deleteVenta = async (req, res )=>{}
