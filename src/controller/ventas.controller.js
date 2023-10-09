@@ -44,7 +44,6 @@ export const getVentaByEntreFechas = async (req, res )=>{
             '$gte': `${from}T00:00:00.000Z`,
             '$lt': `${to}T23:59:59.999Z`
                 } 
-
         }
     await Venta.find(_busqueda)
                 .populate({path: 'User', select:['username','nombre','apellido','email']})
@@ -52,6 +51,10 @@ export const getVentaByEntreFechas = async (req, res )=>{
                 .catch((error)=> res.json({message : error})) 
 }
 export const deleteVenta = async (req, res )=>{
-    
+    const {ventaId} = req.params;
+       
+    await  Venta.findByIdAndDelete(ventaId)
+                .then(()=> res.status(201).json({message : `Venta ${ventaId} eliminada`}))
+                .catch((error)=> res.json({message : error})) ; 
 }
 export const updateVenta = async (req, res )=>{}
