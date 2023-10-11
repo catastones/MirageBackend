@@ -1,0 +1,33 @@
+version: 2
+jobs:
+  build:
+    machine: true
+    steps:
+      - add_ssh_keys:
+          fingerprints:
+            - "34:52:7e:df:1c:2b:b6:52:44:c1:bf:63:da:a4:a9:83"
+      - checkout
+      - run: 
+          name: Docker Login
+          command: docker login -u $DOCKER_USER -p $DOCKER_PASS
+      - run: 
+          name: Building Docker Image
+          command: docker build -t $DOCKER_USER/digital-mirage-back:$CIRCLE_SHA1 .
+      - run: 
+          name: Push Docker Image to Docker Hub
+          command: docker push $DOCKER_USER/digital-mirage-back:$CIRCLE_SHA1
+      - run: 
+          name: Pull Docker Image on Remote Host
+          command: ssh usuario@34.176.113.213 "sudo docker pull $DOCKER_USER/digital-mirage-back:$CIRCLE_SHA1"
+      - run: 
+          name: Stop and Remove Old Docker Container if Exists
+          command: ssh usuario@34.176.113.213 "sudo docker stop digital-mirage-back || true && docker rm digital-mirage-back || true"
+      - run: 
+          name: Start Docker Container on Remote Host
+          command: ssh usuario@34.176.113.213 "sudo docker run -d --name digital-mirage-back -p 3055:3055 $DOCKER_USER/digital-mirage-back:$CIRCLE_SHA1"
+
+workflows:
+  version: 2
+  build-and-deploy:
+    jobs:
+      - build
