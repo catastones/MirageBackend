@@ -9,7 +9,7 @@ export const verifyToken = async (req, res, next) => {
         const Token = req.headers["x-acces-token"];
     
         if(!Token) return res.status(403).json({message:'La petición necesita Token'})
-        const decoded = await jwt.verify(Token, config.SECERET)
+        const decoded = await jwt.verify(Token, config.SECRET)
         req.userid = decoded.id; // recupero id del token
         const user = await User.findById(req.userid);
         if(!user) return res.status(404).json({message:'Usuario no existe'})
@@ -24,14 +24,16 @@ export const verifyToken = async (req, res, next) => {
 export const isUser = async (req, res, next) =>{
      const admin = await User.findById(req.userid).populate('roles');//puedo usar req.id por que lo declare en la funcion anterior, no podria usarlo si lo hago en una funcion posterior
      
-    if(!admin.roles[0].name ==="user") return res.status(403).json({message:'Requiere Rol user'});
+    if(!admin.roles[0].name ==="user") {return res.status(403).json({message:'Requiere Rol user'})};
     next();  
    
 }
 export const isAdmin = async (req, res, next) =>{
     const admin = await User.findById(req.userid).populate('roles');//puedo usar req.id por que lo declare en la funcion anterior, no podria usarlo si lo hago en una funcion posterior
-     
-    if(!admin.roles[0].name ==="admin") return res.status(403).json({message:'Requiere Rol Admnin'});
+    if(!(admin.roles[0].name =="admin"))
+     {
+       return res.status(403).json({message:'Requiere Rol Admnin'})
+    };
     next();  
 
 }
@@ -39,7 +41,7 @@ export const isAdmin = async (req, res, next) =>{
 export const isClient = async (req, res, next) =>{
     const admin = await User.findById(req.userid).populate('roles');//puedo usar req.id por que lo declare en la funcion anterior, no podria usarlo si lo hago en una funcion posterior
      
-    if(!admin.roles[0].name ==="client") return res.status(403).json({message:'Requiere Rol client'});
+    if(!admin.roles[0].name ==="client") {return res.status(403).json({message:'Requiere Rol client'})};
     next();  
 
 }

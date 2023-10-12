@@ -38,7 +38,7 @@ export const singnin = async (req, res )=>{
     const passMach = await User.comparePassword(req.body.password ,userFound.password )
     if (!passMach) return res.status(400).json({message: 'password incorrecto'});
     userFound.password = null;
-    const token =  jwt.sign({id:userFound._id},config.SECRET,{expiresIn:86400});
+    const token =  jwt.sign({id:userFound._id}, config.SECRET,{expiresIn:86400});
     if (userFound.enable) userFound.token = token;
     res.json(userFound);     
   

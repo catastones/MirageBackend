@@ -2,11 +2,12 @@ import { Router } from "express";
 const router = Router();
 
 import * as categoriaCtrl from '../controller/categoria.controller'
+import * as authJWT from "../middlewares/authJWT"
 
 
- router.post('/',categoriaCtrl.newCategoria);
+ router.post('/',[authJWT.verifyToken, authJWT.isAdmin],categoriaCtrl.newCategoria);
  router.get('/', categoriaCtrl.getCategorias);
- router.delete('/:categoriaId',categoriaCtrl.deleteCategorias);
- router.put('/',categoriaCtrl.updateCategorias);
+ router.delete('/:categoriaId',[authJWT.verifyToken,authJWT.isAdmin],categoriaCtrl.deleteCategorias);
+ router.put('/',[authJWT.verifyToken,authJWT.isAdmin],categoriaCtrl.updateCategorias);
 
 export default router;
