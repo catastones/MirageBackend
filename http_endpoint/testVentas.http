@@ -1,0 +1,68 @@
+
+@baseUrl_local = http://localhost:3055
+@baseUrl_Remote = https://miragebackend-saag-dev.fl0.io
+### listVenta
+
+GET {{baseUrl_local}}/ventas HTTP/1.1
+### getVentaById
+
+GET {{baseUrl_local}}/ventas/6524baaa36ca0ec6afa89c28 HTTP/1.1
+###
+### getVentaByBuyer
+
+GET {{baseUrl_local}}/ventas/bybuyer/6516f525613912eac3fedda3 HTTP/1.1
+###
+### entrefechas
+
+GET {{baseUrl_local}}/ventas/entrefechas/2023-10-10&2023-10-10 HTTP/1.1
+###
+DELETE {{baseUrl_local}}/ventas/6524baaa36ca0ec6afa89c28 HTTP/1.1
+###
+
+POST {{baseUrl_local}}/ventas HTTP/1.1
+Content-Type: application/json
+
+{ 
+	"cliente":"6516f525613912eac3fedda3", 
+    "items":[
+             {
+            "idProduct" :"651c674cf1774eef38dbb166",
+            "unidades" :1,
+           "precio": 139.999
+        }
+
+    ],
+    "monto_total":139.999,
+    "pyment":{
+        "tipo_de_pago": "mercadopago",
+       "pagado": true,
+        "entregado": true,
+        "fecha_pago": "2023-10-09T00:00:00.00Z" 
+    }
+    
+}
+###
+
+PUT {{baseUrl_local}}/ventas HTTP/1.1
+Content-Type: application/json
+
+{ 
+    "_id": "6524c1d436ca0ec6afa89c2b",
+	"cliente":"6516f525613912eac3fedda3", 
+    "items":[
+             {
+            "idProduct" :"651c674cf1774eef38dbb166",
+          "unidades" :2,
+           "precio": 110.999
+        }
+
+    ],
+    "monto_total":221.998,
+    "pyment":{
+        "tipo_de_pago": "credito",
+       "pagado": true,
+        "entregado": true,
+        "fecha_pago": "2023-10-08T00:00:00.00Z" 
+    }
+    
+}
