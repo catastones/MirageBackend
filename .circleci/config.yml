@@ -21,7 +21,7 @@ jobs:
           command: ssh usuario@34.176.113.213 "sudo docker pull $DOCKER_USER/digital-mirage-back:$CIRCLE_SHA1"
       - run: 
           name: Stop and Remove Old Docker Container if Exists
-          command: ssh usuario@34.176.113.213 "sudo docker stop digital-mirage-back || true && docker rm digital-mirage-back || true"
+          command: ssh usuario@34.176.113.213 "sudo docker stop digital-mirage-back || true && sudo docker rm digital-mirage-back || true"
       - run: 
           name: Start Docker Container on Remote Host
           command: ssh usuario@34.176.113.213 "sudo docker run -d --name digital-mirage-back -p 3055:3055 $DOCKER_USER/digital-mirage-back:$CIRCLE_SHA1"
