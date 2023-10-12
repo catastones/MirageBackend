@@ -37,6 +37,17 @@ export const isAdmin = async (req, res, next) =>{
     next();  
 
 }
+export const isAdminOrClient = async (req, res, next) =>{
+    const admin = await User.findById(req.userid).populate('roles');//puedo usar req.id por que lo declare en la funcion anterior, no podria usarlo si lo hago en una funcion posterior
+    const isAdmin = admin.roles[0].name ==="admin";
+    const isClient = admin.roles[0].name ==="client";
+    if(!(isAdmin || isClient))
+     {
+       return res.status(403).json({message:'No tiene rol para esta operación'})
+    };
+    next();  
+
+}
 
 export const isClient = async (req, res, next) =>{
     const admin = await User.findById(req.userid).populate('roles');//puedo usar req.id por que lo declare en la funcion anterior, no podria usarlo si lo hago en una funcion posterior
