@@ -3,7 +3,7 @@
 @baseUrl_Remote = https://miragebackend-saag-dev.fl0.io
 ### listVenta
 
-GET {{baseUrl_local}}/ventas HTTP/1.1
+GET {{baseUrl_Remote}}/ventas HTTP/1.1
 ### getVentaById
 
 GET {{baseUrl_local}}/ventas/6524baaa36ca0ec6afa89c28 HTTP/1.1
