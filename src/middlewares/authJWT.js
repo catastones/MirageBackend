@@ -6,9 +6,8 @@ import Roles from '../models/Roles'
 export const verifyToken = async (req, res, next) => {
     
     try{
-        const Token = req.headers["x-acces-token"];
-    
-        if(!Token) return res.status(403).json({message:'La petición necesita Token'})
+        const Token = req.headers["x-acces-token"];    
+        if(!Token ) return res.status(403).json({message:'La petición necesita Token'})
         const decoded = await jwt.verify(Token, config.SECRET)
         req.userid = decoded.id; // recupero id del token
         const user = await User.findById(req.userid);
