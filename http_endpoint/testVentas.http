@@ -2,25 +2,41 @@
 @baseUrl_local = http://localhost:3055
 @baseUrl_Remote = https://miragebackend-saag-dev.fl0.io
 ### listVenta
+@authToken = {{login.response.body.token}}
+###
+# @name login
+POST {{baseUrl_local}}/user/login HTTP/1.1
+Content-Type: application/json
 
-GET {{baseUrl_local}}/ventas HTTP/1.1
+{ 
+	"username":"catastones",
+    "password":"123456"    
+}
+###
+GET {{baseUrl_Remote}}/ventas HTTP/1.1
+x-acces-token: {{authToken}}
 ### getVentaById
 
 GET {{baseUrl_local}}/ventas/6524baaa36ca0ec6afa89c28 HTTP/1.1
+x-acces-token: {{authToken}}
 ###
 ### getVentaByBuyer
 
 GET {{baseUrl_local}}/ventas/bybuyer/6516f525613912eac3fedda3 HTTP/1.1
+x-acces-token: {{authToken}}
 ###
 ### entrefechas
 
 GET {{baseUrl_local}}/ventas/entrefechas/2023-10-10&2023-10-10 HTTP/1.1
+x-acces-token: {{authToken}}
 ###
 DELETE {{baseUrl_local}}/ventas/6524baaa36ca0ec6afa89c28 HTTP/1.1
+x-acces-token: {{authToken}}
 ###
 
 POST {{baseUrl_local}}/ventas HTTP/1.1
 Content-Type: application/json
+x-acces-token: {{authToken}}
 
 { 
 	"cliente":"6516f525613912eac3fedda3", 
