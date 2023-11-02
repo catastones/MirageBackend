@@ -14,10 +14,20 @@ export const newCategoria = async (req, res )=>{
                 .catch((error)=> res.json({message : error})) 
 }
 
-export const getCategorias = async (req, res )=>{
-   await Categoria.find()
+export const getCategoriasByName = async (req, res )=>{
+  const {name} = req.params;
+  const findCategoria = {
+     "name":`${name}`
+   };
+   await Categoria.find(findCategoria)
                 .then((data)=> res.json(data))
                 .catch((error)=> res.json({message : error})) 
+}
+
+export const getCategorias = async (req, res )=>{
+  await Categoria.find()
+               .then((data)=> res.json(data))
+               .catch((error)=> res.json({message : error})) 
 }
 
 export const deleteCategorias = async (req, res )=>{
