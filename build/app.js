@@ -12,6 +12,7 @@ var _initialSetup = require("./libs/initialSetup");
 var _user = _interopRequireDefault(require("./routes/user.routes"));
 var _categorias = _interopRequireDefault(require("./routes/categorias.router"));
 var _producto = _interopRequireDefault(require("./routes/producto.router"));
+var _ventas = _interopRequireDefault(require("./routes/ventas.router"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 var cors = require('cors');
 
@@ -37,4 +38,5 @@ app.get('/', function (req, res) {
 app.use('/user', _user["default"]);
 app.use('/categorias', _categorias["default"]);
 app.use('/productos', _producto["default"]);
+app.use('/ventas', _ventas["default"]);
 var _default = exports["default"] = app;

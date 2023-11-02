@@ -20,7 +20,7 @@ Content-Type: application/json
 x-acces-token: {{authToken}}
 
 { 
-	"name":"motherboard"   
+	"name":"Headphones"   
 }
 ###
 DELETE {{baseUrl_local}}/categorias/651b49f1ca31694fa4a5fc76 HTTP/1.1

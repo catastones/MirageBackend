@@ -6,6 +6,7 @@ import * as authJWT from "../middlewares/authJWT"
 
 
  router.post('/',[authJWT.verifyToken, authJWT.isAdmin],productoCtrl.newProducto);
+ router.post('/lotes',[authJWT.verifyToken, authJWT.isAdmin],productoCtrl.productLotes);
  router.get('/', productoCtrl.getProductos);
  router.get('/byid/:productoId', productoCtrl.getProductoById);
  router.get('/categoria/:categoria', productoCtrl.getProductoByCategoria);

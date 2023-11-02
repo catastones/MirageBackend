@@ -15,7 +15,7 @@ Content-Type: application/json
 ###
 GET {{baseUrl_local}}/productos HTTP/1.1
 ###
-GET {{baseUrl_Remote}}/productos/byid/651c651af1774eef38dbb162 HTTP/1.1
+GET {{baseUrl_local}}/productos/byid/65439c0e056f71e50764ae50 HTTP/1.1
 ###
 ###
 GET {{baseUrl_Remote}}/productos/categoria/TV HTTP/1.1
@@ -25,26 +25,15 @@ Content-Type: application/json
 x-acces-token: {{authToken}}
 
 { 
-	"categoria":"SmartPhone", 
-    "modelo":"Redmi 10C",
-    "marca":"Xiaomi",
-    "descripcion":{
-        "pantalla":"6.71'",
-        "Resolucion":"720 px x 1650 px",        
-        "SO":"Android 11",
-        "Resolucion_camara_trasera":"50 Mpx",
-        "Resolucion_camara_frontal":"5 Mpx",
-        "RAM":  "4 GB",
-        "ROM":  "128 GB",
-        "Dual_SIM":"SI",
-        "color": "Azul océano"   
-    },
-    "stock":10,     
-    "precio":110.999,
-    "url_image":"https://http2.mlstatic.com/D_NQ_NP_968191-MLA49949403456_052022-O.webp"
+	"categoria":"SmartPhone",
+        "url_image":"",
+        "modelo":"iPhone 11 Pro Max",
+        "marca":"Apple",
+        "descripcion":"6.5-inch Super Retina XDR OLED display, Triple 12MP Ultra Wide, Wide, and Telephoto cameras, A13 Bionic chip, Face ID, and iOS 13","stock":10,"price":1099
+
 }
 ###
-DELETE {{baseUrl_local}}/productos/651c6836f1774eef38dbb16a HTTP/1.1
+DELETE {{baseUrl_local}}/productos/65439c0e056f71e50764ae50 HTTP/1.1
 x-acces-token: {{authToken}}
 ###
 PUT {{baseUrl_local}}/productos HTTP/1.1
@@ -69,6 +58,31 @@ x-acces-token: {{authToken}}
     "url_image":"https://www.lg.com/ar/images/televisores/md07540656/gallery/Z-01.jpg"
 }
 ###
+###
+POST {{baseUrl_local}}/productos/lotes/ HTTP/1.1
+Content-Type: application/json
+x-acces-token: {{authToken}}
+
+{
+    "productos":[
+ 
+    {"categoria":"Consola","url_image":"","marca":"Sony","modelo":"PlayStation 4 Pro","descripcion":"The world's most powerful console with 4K gaming and entertainment, HDR technology, and faster frame rates.","precio":399.99,"stock":10},
+    {"categoria":"Consola","url_image":"","marca":"Microsoft","modelo":"Xbox One X","descripcion":"The world's most powerful console with 4K gaming and entertainment, HDR technology, and faster frame rates.","precio":499.99,"stock":10},
+    {"categoria":"Consola","url_image":"","marca":"Nintendo","modelo":"Switch","descripcion":"The Nintendo Switch is a hybrid console that can be used as both a home console and a portable device.","precio":299.99,"stock":10},
+    {"categoria":"Consola","url_image":"","marca":"Sony","modelo":"PlayStation 4 Slim","descripcion":"The slimmed down version of the PlayStation 4, with improved power efficiency and a smaller form factor.","precio":299.99,"stock":10},
+    {"categoria":"Consola","url_image":"","marca":"Microsoft","modelo":"Xbox One S","descripcion":"The slimmed down version of the Xbox One, with improved power efficiency and a smaller form factor.","precio":299.99,"stock":10},
+    {"categoria":"Consola","url_image":"","marca":"Nintendo","modelo":"Wii U","descripcion":"The Wii U is a home console that features a unique tablet-like controller and a variety of exclusive games.","precio":199.99,"stock":10},
+    {"categoria":"Consola","url_image":"","marca":"Sony","modelo":"PlayStation 3","descripcion":"The PlayStation 3 is a home console that features a variety of exclusive games and a Blu-ray player.","precio":199.99,"stock":10},
+    {"categoria":"Consola","url_image":"","marca":"Microsoft","modelo":"Xbox 360","descripcion":"The Xbox 360 is a home console that features a variety of exclusive games and a DVD player.","precio":199.99,"stock":10},
+    {"categoria":"Consola","url_image":"","marca":"Nintendo","modelo":"Wii","descripcion":"The Wii is a home console that features a variety of exclusive games and a motion-sensing controller.","precio":199.99,"stock":10},
+    {"categoria":"Consola","url_image":"","marca":"Sony","modelo":"PlayStation 2","descripcion":"The PlayStation 2 is a home console that features a variety of exclusive games and a DVD player.","precio":149.99,"stock":10}
+  
+                ]
+}
+
+
+
+
 # { 
 # 	"categoria":"SmartPhone", 
 #     "modelo":"Moto G32",

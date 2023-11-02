@@ -24,6 +24,32 @@ export const newProducto = async (req, res )=>{
                 .then((data)=> res.json(data))
                 .catch((error)=> res.json({message : error})) 
 }
+export const productLotes = async (req,res)=>{
+    const {productos} = req.body;
+    let productos_save = [];
+    await asyncForEach(productos, async (producto)=>{
+      const categoriasDB = await Categoria.find({name : producto.categoria});
+      let produc = new Producto({  
+
+        modelo : producto.modelo,
+        marca : producto.marca,
+        descripcion : producto.descripcion, 
+        stock : producto.stock,  
+        precio: producto.precio,     
+        categoria: categoriasDB.map((cat) => cat._id),
+        url_image: producto.url_image
+      });
+      let productExist = await Producto.find({modelo: producto.modelo})
+      if(productExist.length == 0){
+       const p = await produc.save()
+                            .then((p)=> p);
+        productos_save.push(p)            
+      }
+    })
+    res.json(productos_save)
+
+}
+
 export const getProductos = async (req, res )=>{
     await Producto.find()
                 .populate('categoria')
@@ -57,16 +83,6 @@ export const updateProducto = async (req, res )=>{
     
     const {_id,categoria, modelo, marca, descripcion, stock, precio, url_image} = req.body;
      const categoriasDB = await Categoria.find({name : categoria}); 
-      // let produc = new Producto({    
-
-      //   modelo,
-      //   marca,
-      //   descripcion, 
-      //   stock,  
-      //   precio,     
-      //   categoria: categoriasDB.map((cat) => cat._id),
-      //   url_image
-      // });
         
     await Producto.findByIdAndUpdate(_id, 
                                 {$set:  
@@ -82,4 +98,11 @@ export const updateProducto = async (req, res )=>{
                 .then(()=> res.status(201).json({message : `Producto ${modelo} actualizado`}))
                 .catch((error)=> res.json({message : error})) ; 
 
+}
+
+async function asyncForEach(array, callback) {
+  /// funcion para manjer foreach con promesas
+  for (let index = 0; index < array.length; index++) {
+    await callback(array[index], index, array);
+  }
 }

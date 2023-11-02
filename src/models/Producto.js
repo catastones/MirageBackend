@@ -9,10 +9,10 @@ const productoSchema = new Schema({
     marca:{
         type: String,
         require: true,
-        index: { unique: true }         
+              
     },
     descripcion:{
-        type: Object,
+        type: String,
         require: true
         
     },
