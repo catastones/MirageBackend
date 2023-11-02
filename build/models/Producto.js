@@ -16,13 +16,10 @@ var productoSchema = new _mongoose.Schema({
   },
   marca: {
     type: String,
-    require: true,
-    index: {
-      unique: true
-    }
+    require: true
   },
   descripcion: {
-    type: Object,
+    type: String,
     require: true
   },
   stock: {

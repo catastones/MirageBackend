@@ -7,3 +7,5 @@ mongosse.connect(process.env.MONGO_URL).then(function () {
 })["catch"](function (error) {
   return console.log(error);
 });
+var conn = mongosse.connection;
+module.exports = conn;
